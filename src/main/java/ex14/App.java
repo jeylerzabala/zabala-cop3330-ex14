@@ -39,7 +39,7 @@ public class App {
     public static void main(String[] args) {
 
         float orderAmount;
-        double tax, total, roundedTotal, roundedSubtotal;
+        double tax, total;
         tax = 0.55;
 
         Scanner sc = new Scanner(System.in);
@@ -52,14 +52,11 @@ public class App {
 
         total = orderAmount + tax;
 
-        roundedTotal = ((double) ((total * 100.0) + ((total < 0.0) ? -0.5 : 0.5))) / 100.0;
-        roundedSubtotal = ((double) ((orderAmount * 100.0) + ((orderAmount < 0.0) ? -0.5 : 0.5))) / 100.0;
+        String subtotal = String.format("%.2f", orderAmount);
+        String strTotal = String.format("%.2f", total);
 
-        String strRoundedSubtotal = String.format("%.2f", orderAmount);
-        String strRoundedTotal = String.format("%.2f", total);
-
-        String output = String.format("The subtotal is $%s.\nThe tax is $0.55.\nThe total is $%s.", strRoundedSubtotal, strRoundedTotal);
-        String output1 = String.format("The total is $%s", strRoundedSubtotal);
+        String output = String.format("The subtotal is $%s.\nThe tax is $0.55.\nThe total is $%s.", subtotal, strTotal);
+        String output1 = String.format("The total is $%s", subtotal);
 
         if (state.equals("WI")) {
             System.out.println(output);
