@@ -38,27 +38,30 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
 
-        int orderAmount;
-        double tax, total;
+        float orderAmount;
+        double tax, total, roundedTotal, roundedSubtotal;
         tax = 0.55;
 
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter the principal: ");
-        orderAmount = sc.nextInt();
+        orderAmount = sc.nextFloat();
 
         Scanner in = new Scanner(System.in);
-        System.out.print("What is the input string?");
+        System.out.print("What is the state? ");
         String state = in.nextLine();
 
         total = orderAmount + tax;
 
-        String subtotal = String.format("%.2f", orderAmount);
-        String strTotal = String.format("%.2f", total);
+        roundedTotal = ((double) ((total * 100.0) + ((total < 0.0) ? -0.5 : 0.5))) / 100.0;
+        roundedSubtotal = ((double) ((orderAmount * 100.0) + ((orderAmount < 0.0) ? -0.5 : 0.5))) / 100.0;
 
-        String output = String.format("The subtotal is $%s\n. The tax is $0.55.\nThe total is $%s", subtotal, tax, strTotal);
-        String output1 = String.format("The total is $%s", subtotal);
+        String strRoundedSubtotal = String.format("%.2f", orderAmount);
+        String strRoundedTotal = String.format("%.2f", total);
 
-        if (state == "WI") {
+        String output = String.format("The subtotal is $%s.\nThe tax is $0.55.\nThe total is $%s.", strRoundedSubtotal, strRoundedTotal);
+        String output1 = String.format("The total is $%s", strRoundedSubtotal);
+
+        if (state.equals("WI")) {
             System.out.println(output);
         }
         else {
